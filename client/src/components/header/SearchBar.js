@@ -1,6 +1,6 @@
 import React from "react";
 
-import { alpha, makeStyles, InputBase } from "@material-ui/core";
+import { makeStyles, InputBase } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
