@@ -3,6 +3,8 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import CustomButtons from "./CustomButtons";
 
+import { Link } from "react-router-dom";
+
 import {
   AppBar,
   Toolbar,
@@ -31,6 +33,8 @@ const useStyle = makeStyles({
   component: {
     lineHeight: 0,
     marginLeft: "12%",
+    textDecoration: "none",
+    color: "#fff",
   },
 
   subHeading: {
@@ -55,7 +59,7 @@ const Header = () => {
   return (
     <AppBar className={classes.header}>
       <ToolBar>
-        <Box className={classes.component}>
+        <Link to='/' className={classes.component}>
           <img className={classes.logo} src={logoURL} alt='logoURL' />
           <Box className={classes.container}>
             <Typography className={classes.subHeading}>
@@ -63,7 +67,7 @@ const Header = () => {
             </Typography>
             <img src={subURL} alt='subURL' className={classes.subURL} />
           </Box>
-        </Box>
+        </Link>
         <SearchBar />
         <CustomButtons />
       </ToolBar>

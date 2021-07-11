@@ -3,6 +3,8 @@ import React from "react";
 import { Box, Button, makeStyles, Typography, Badge } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 
+import { Link } from "react-router-dom";
+
 const useStyle = makeStyles({
   login: {
     background: "#ffffff",
@@ -20,6 +22,8 @@ const useStyle = makeStyles({
     "& > *": {
       marginRight: 50,
       alignItems: "center",
+      textDecoration: "none",
+      color: "#fff",
     },
   },
   container: {
@@ -30,16 +34,19 @@ const CustomButtons = () => {
   const classes = useStyle();
   return (
     <Box className={classes.wrapper}>
-      <Button variant='contained' className={classes.login}>
-        Login
-      </Button>
-      <Typography
-        style={{ marginTop: "5px", fontWeight: "550", fontSize: "16px" }}
-      >
-        {" "}
-        More
-      </Typography>
-      <Box className={classes.container}>
+      <Link>
+        <Button variant='contained' className={classes.login}>
+          Login
+        </Button>
+      </Link>
+      <Link>
+        <Typography
+          style={{ marginTop: "5px", fontWeight: "550", fontSize: "16px" }}
+        >
+          More
+        </Typography>
+      </Link>
+      <Link to='/cart' className={classes.container}>
         <Badge badgeContent={4} color='error'>
           <ShoppingCart />
         </Badge>
@@ -50,7 +57,7 @@ const CustomButtons = () => {
           {" "}
           Cart
         </Typography>
-      </Box>
+      </Link>
     </Box>
   );
 };
