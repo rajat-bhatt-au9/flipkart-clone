@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Box, makeStyles } from "@material-ui/core";
 
@@ -6,6 +6,10 @@ import Navbar from "./Navbar";
 import Banner from "./Banner";
 import ProductSlider from "./ProductSlider";
 import MidSection from "./MidSection";
+
+//import { products } from "../../constants/data";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts as listProducts } from "../../redux/actions/productActions";
 
 const useStyles = makeStyles({
   component: {
@@ -24,6 +28,13 @@ function Home() {
   const classes = useStyles();
   const adURL =
     "https://rukminim1.flixcart.com/flap/464/708/image/633789f7def60050.jpg?q=70";
+
+  const { products } = useSelector((state) => state.getProducts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <div>
       <Navbar />
@@ -31,7 +42,11 @@ function Home() {
         <Banner />
         <Box style={{ display: "flex" }}>
           <Box style={{ width: "83%" }}>
-            <ProductSlider timer={true} title='Deal of the Day' />
+            <ProductSlider
+              timer={true}
+              title='Deal of the Day'
+              products={products}
+            />
           </Box>
           <Box className={classes.rightwrapper}>
             <img
@@ -42,11 +57,27 @@ function Home() {
           </Box>
         </Box>
         <MidSection />
-        <ProductSlider timer={false} title='Discounts for You' />
-        <ProductSlider timer={false} title='Suggested Items' />
-        <ProductSlider timer={false} title='Top selections' />
-        <ProductSlider timer={false} title='Recommended Items' />
-        <ProductSlider timer={false} title='Best Sellers' />
+        <ProductSlider
+          timer={false}
+          title='Discounts for You'
+          products={products}
+        />
+        <ProductSlider
+          timer={false}
+          title='Suggested Items'
+          products={products}
+        />
+        <ProductSlider
+          timer={false}
+          title='Top selections'
+          products={products}
+        />
+        <ProductSlider
+          timer={false}
+          title='Recommended Items'
+          products={products}
+        />
+        <ProductSlider timer={false} title='Best Sellers' products={products} />
       </Box>
     </div>
   );

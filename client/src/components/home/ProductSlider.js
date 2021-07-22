@@ -1,9 +1,8 @@
 import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Countdown from "react-countdown";
-
-import { products } from "../../constants/data";
 
 import {
   Box,
@@ -71,7 +70,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductSlider = ({ timer, title }) => {
+const ProductSlider = ({ timer, title, products }) => {
   const classes = useStyles();
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
@@ -115,31 +114,35 @@ const ProductSlider = ({ timer, title }) => {
         itemClass='carousel-item-padding-40-px'
         containerClass='carousel-container'
       >
-        {products.map((product) => (
-          <Box textAlign='center' className={classes.wrapper}>
-            <img
-              src={product.url}
-              key={product.id}
-              alt=''
-              className={classes.image}
-            />
-            <Typography
-              className={classes.text}
-              style={{ fontWeight: 600, color: "#212121" }}
-            >
-              {product.title.shortTitle}
-            </Typography>
-            <Typography className={classes.text} style={{ color: "green" }}>
-              {product.discount}
-            </Typography>
-            <Typography
-              className={classes.text}
-              style={{ color: "#212121", opacity: "0.6" }}
-            >
-              {product.tagline}
-            </Typography>
-          </Box>
-        ))}
+        {products.length === 0 ? (
+          <CircularProgress disableShrink />
+        ) : (
+          products.map((product) => (
+            <Box textAlign='center' className={classes.wrapper}>
+              <img
+                src={product.url}
+                key={product.id}
+                alt=''
+                className={classes.image}
+              />
+              <Typography
+                className={classes.text}
+                style={{ fontWeight: 600, color: "#212121" }}
+              >
+                {product.title.shortTitle}
+              </Typography>
+              <Typography className={classes.text} style={{ color: "green" }}>
+                {product.discount}
+              </Typography>
+              <Typography
+                className={classes.text}
+                style={{ color: "#212121", opacity: "0.6" }}
+              >
+                {product.tagline}
+              </Typography>
+            </Box>
+          ))
+        )}
       </Carousel>
     </Box>
   );
