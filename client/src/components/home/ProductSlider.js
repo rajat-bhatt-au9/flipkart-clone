@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -118,29 +119,31 @@ const ProductSlider = ({ timer, title, products }) => {
           <CircularProgress disableShrink />
         ) : (
           products.map((product) => (
-            <Box textAlign='center' className={classes.wrapper}>
-              <img
-                src={product.url}
-                key={product.id}
-                alt=''
-                className={classes.image}
-              />
-              <Typography
-                className={classes.text}
-                style={{ fontWeight: 600, color: "#212121" }}
-              >
-                {product.title.shortTitle}
-              </Typography>
-              <Typography className={classes.text} style={{ color: "green" }}>
-                {product.discount}
-              </Typography>
-              <Typography
-                className={classes.text}
-                style={{ color: "#212121", opacity: "0.6" }}
-              >
-                {product.tagline}
-              </Typography>
-            </Box>
+            <Link to={`product/${product.id}`}>
+              <Box textAlign='center' className={classes.wrapper}>
+                <img
+                  src={product.url}
+                  key={product.id}
+                  alt=''
+                  className={classes.image}
+                />
+                <Typography
+                  className={classes.text}
+                  style={{ fontWeight: 600, color: "#212121" }}
+                >
+                  {product.title.shortTitle}
+                </Typography>
+                <Typography className={classes.text} style={{ color: "green" }}>
+                  {product.discount}
+                </Typography>
+                <Typography
+                  className={classes.text}
+                  style={{ color: "#212121", opacity: "0.6" }}
+                >
+                  {product.tagline}
+                </Typography>
+              </Box>
+            </Link>
           ))
         )}
       </Carousel>
