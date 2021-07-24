@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import { Box, Button, makeStyles, Typography, Badge } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
-
+import { useSelector } from "react-redux";
 import LoginDialog from "../login/Login";
 import { LoginContext } from "../../context/ContextProvider";
 import Profile from "./Profile";
@@ -38,6 +38,8 @@ const CustomButtons = () => {
   const classes = useStyle();
 
   const [open, setOpen] = useState(false);
+  const cartDetails = useSelector((state) => state.cart);
+  const { cartItems } = cartDetails;
 
   const openLoginDialog = () => {
     setOpen(true);
@@ -68,7 +70,7 @@ const CustomButtons = () => {
         </Typography>
       </Link>
       <Link to='/cart' className={classes.container}>
-        <Badge badgeContent={4} color='error'>
+        <Badge badgeContent={cartItems.length} color='error'>
           <ShoppingCart />
         </Badge>
 

@@ -14,7 +14,7 @@ import { getProducts as listProducts } from "../../redux/actions/productActions"
 const useStyles = makeStyles({
   component: {
     padding: 10,
-    background: "#f2f2f2",
+    background: "#f1f3f6",
   },
   rightwrapper: {
     background: "white",
