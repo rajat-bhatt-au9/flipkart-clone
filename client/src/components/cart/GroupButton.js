@@ -27,7 +27,7 @@ const GroupedButton = () => {
       <Button
         className={classes.button}
         onClick={() => handleDecrement()}
-        disabled={counter == 0}
+        disabled={counter === 0}
       >
         -
       </Button>
