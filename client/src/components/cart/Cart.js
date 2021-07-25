@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import TotalView from "./TotalView";
 import EmptyCart from "./EmptyCart";
-/* import { post } from "../../utils/paytm";
-import { payUsingPaytm } from "../../service/api"; */
+import { post } from "../../utils/paytm";
+import { payUsingPaytm } from "../../service/api";
 
 const useStyle = makeStyles((theme) => ({
   component: {
@@ -64,7 +64,7 @@ const Cart = ({ match, history }) => {
     dispatch(removeFromCart(id));
   };
 
-  /* const buyNow = async () => {
+  const buyNow = async () => {
     let response = await payUsingPaytm({
       amount: 500,
       email: "codeforinterview01@gmail.com",
@@ -74,7 +74,7 @@ const Cart = ({ match, history }) => {
       params: response,
     };
     post(information);
-  }; */
+  };
 
   return (
     <>
@@ -98,7 +98,7 @@ const Cart = ({ match, history }) => {
             ))}
             <Box className={classes.bottom}>
               <Button
-                /* onClick={() => buyNow()} */
+                onClick={() => buyNow()}
                 variant='contained'
                 className={classes.placeOrder}
               >
